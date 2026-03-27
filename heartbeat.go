@@ -1,4 +1,4 @@
-package flower
+package goflower
 
 import (
 	"context"
@@ -31,7 +31,7 @@ func createHeartbeatBody(hostname string, activeTasks int) ([]byte, error) {
 		Active:    activeTasks,
 		Processed: 0,
 		Loadavg:   []float64{avg.Load1, avg.Load5, avg.Load15},
-		SwIdent:   "gopher-flower",
+		SwIdent:   "gopher-goflower",
 		SwVer:     runtime.Version(),
 		SwSys:     runtime.GOOS,
 		Timestamp: timestampFromTime(now),

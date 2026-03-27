@@ -1,4 +1,4 @@
-package flower
+package goflower
 
 import (
 	"context"

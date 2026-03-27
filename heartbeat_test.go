@@ -1,4 +1,4 @@
-package flower
+package goflower
 
 import (
 	"context"
@@ -37,7 +37,7 @@ func TestCreateHeartbeatBodyUsesCurrentRuntimeMetadata(t *testing.T) {
 	}
 }
 
-func TestCreateFlowerHeartbeatReconnectsAfterPublishError(t *testing.T) {
+func TestRunHeartbeatReconnectsAfterPublishError(t *testing.T) {
 	var getConnCalls atomic.Int32
 	var failedPublishes atomic.Int32
 	var successfulPublishes atomic.Int32
@@ -77,7 +77,7 @@ func TestCreateFlowerHeartbeatReconnectsAfterPublishError(t *testing.T) {
 	select {
 	case <-done:
 	case <-time.After(250 * time.Millisecond):
-		t.Fatal("RunFlowerHeartbeat() did not stop after cancellation")
+		t.Fatal("runHeartbeat() did not stop after cancellation")
 	}
 
 	if got := getConnCalls.Load(); got < 2 {

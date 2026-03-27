@@ -42,7 +42,7 @@ func main() {
 
 	logger := zap.NewExample()
 
-	client, err := flower.NewClient(pool, "payments", logger)
+	client, err := goflower.NewClient(pool, "payments", logger)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -60,7 +60,7 @@ func main() {
 	}
 
 	if err := runTask(); err != nil {
-		traceback := flower.CurrentStackTrace(0)
+		traceback := goflower.CurrentStackTrace(0)
 		if publishErr := client.PublishFailed(taskID, err.Error(), traceback); publishErr != nil {
 			log.Fatal(publishErr)
 		}
