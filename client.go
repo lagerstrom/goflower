@@ -23,7 +23,7 @@ const (
 	defaultHeartbeatCloseTimeout = 3 * time.Second
 )
 
-//go:generate mockgen -destination mocks/client.go github.com/lagerstrom/goflower Client
+//go:generate mockgen -package mocks -destination mocks/client.go github.com/lagerstrom/goflower Client
 
 // Client publishes Flower-compatible task lifecycle events to Redis.
 //

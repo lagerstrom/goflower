@@ -89,6 +89,36 @@ The intended public API is:
 
 `CurrentStackTrace` is a convenience helper for callers that want to attach the current Go call stack to `PublishFailed`.
 
+## Mocks
+
+This module ships a generated GoMock package for the `Client` interface at `github.com/lagerstrom/goflower/mocks`.
+
+The generated mocks are intended to be committed and versioned with the module so downstream repos can import them directly from tagged releases.
+
+```go
+package mypkg
+
+import (
+	"testing"
+
+	goflowermocks "github.com/lagerstrom/goflower/mocks"
+	"go.uber.org/mock/gomock"
+)
+
+func TestSomething(t *testing.T) {
+	ctrl := gomock.NewController(t)
+
+	client := goflowermocks.NewMockClient(ctrl)
+	client.EXPECT().PublishStarted("task-123").Return(nil)
+}
+```
+
+Regenerate the bundled mocks with:
+
+```sh
+make generate
+```
+
 ## Event Semantics
 
 The client publishes Celery event messages to Redis channels under `/0.celeryev/...`.

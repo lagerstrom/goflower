@@ -17,4 +17,4 @@ test: generate
 	GOCACHE="$(GOCACHE)" go test ./...
 
 clean:
-	rm -rf .bin mocks
+	rm -rf .bin
